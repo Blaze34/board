@@ -1,7 +1,7 @@
 Board::Application.routes.draw do
   devise_for :users
 
-  resource :vacancies
+  resources :vacancies
 
   root 'vacancies#index'
 
