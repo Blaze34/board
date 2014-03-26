@@ -1,0 +1,21 @@
+!!! 5
+%html
+  %head
+    %title Board
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container
+      = nav_bar brand: 'Board' do
+        = menu_group do
+          = menu_item 'Home', root_path
+          = menu_item 'Vacancies', '/'
+          = menu_item 'Workers', '/'
+        = menu_group pull: :right do
+          = drop_down 'Account' do
+            = menu_item 'Edit Profile', root_path
+            = menu_item 'Account Settings', root_path
+          = menu_item 'Log Out', root_path
+
+      = yield
