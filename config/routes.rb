@@ -1,5 +1,8 @@
 Board::Application.routes.draw do
   devise_for :users
+
+  resource :vacancies
+
   root 'vacancies#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
