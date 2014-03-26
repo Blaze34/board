@@ -10,5 +10,7 @@ class CreateUserFields < ActiveRecord::Migration
       t.integer :user_id
       t.timestamps
     end
+
+    add_index :user_fields, :user_id
   end
 end
