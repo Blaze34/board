@@ -11,9 +11,10 @@ class ApplicationController < ActionController::Base
                    (params[:user][:role] == 'worker' ? user_worker_fields : []))
     end
 
-    #devise_parameter_sanitizer.for(:account_update) do |u|
-    #  u.permit(user_common_fields)
-    #end
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit([ :current_password ] + user_common_fields +
+                   (resource.role == 'worker' ? user_worker_fields(:id) : []))
+    end
   end
 
   private
@@ -22,8 +23,8 @@ class ApplicationController < ActionController::Base
     [ :email, :password, :password_confirmation, :fio, :mobile_phone, :home_phone ]
   end
 
-  def user_worker_fields
+  def user_worker_fields(*fields)
     [ user_fields_attributes: [
-        :salary, :experience, :employment, :learning_place, :skill_list ] ]
+        :salary, :experience, :employment, :learning_place, :skill_list ] + fields ]
   end
 end
