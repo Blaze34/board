@@ -11,15 +11,15 @@
       = f.email_field :email, autofocus: true, class: 'input-block-level'
     .span6
       = f.label :fio
-      = f.text_field :fio, autofocus: true, class: 'input-block-level'
+      = f.text_field :fio, class: 'input-block-level'
 
   .row-fluid
     .span6
       = f.label :mobile_phone
-      = f.text_field :mobile_phone, autofocus: true, class: 'input-block-level'
+      = f.text_field :mobile_phone, class: 'input-block-level'
     .span6
       = f.label :home_phone
-      = f.text_field :home_phone, autofocus: true, class: 'input-block-level'
+      = f.text_field :home_phone, class: 'input-block-level'
 
   .row-fluid
     .span6
@@ -52,6 +52,10 @@
         .span6
           = uf.label :employment
           = uf.select :employment, [''] + UserFields.employment.options, {}, class: 'input-block-level'
+
+
+      = uf.label :skill_list
+      = uf.text_field :skill_list, class: 'input-block-level'
 
   = f.submit 'Sign up', class: 'btn-primary btn-large'
 
