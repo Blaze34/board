@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327142920) do
+ActiveRecord::Schema.define(version: 20140327150301) do
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140327142920) do
     t.integer "experience"
     t.text    "learning_place"
     t.integer "user_id"
+    t.string  "cached_skill_list"
   end
 
   add_index "user_fields", ["user_id"], name: "index_user_fields_on_user_id"
