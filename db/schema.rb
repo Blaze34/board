@@ -14,13 +14,11 @@
 ActiveRecord::Schema.define(version: 20140326132642) do
 
   create_table "user_fields", force: true do |t|
-    t.string   "employment"
-    t.integer  "salary"
-    t.integer  "experience"
-    t.text     "learning_place"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "employment"
+    t.integer "salary"
+    t.integer "experience"
+    t.text    "learning_place"
+    t.integer "user_id"
   end
 
   add_index "user_fields", ["user_id"], name: "index_user_fields_on_user_id"
@@ -38,7 +36,8 @@ ActiveRecord::Schema.define(version: 20140326132642) do
     t.string   "last_sign_in_ip"
     t.string   "fio"
     t.string   "role",                   limit: 20
-    t.string   "phone"
+    t.string   "mobile_phone"
+    t.string   "home_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

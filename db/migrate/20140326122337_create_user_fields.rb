@@ -8,7 +8,6 @@ class CreateUserFields < ActiveRecord::Migration
       t.text    :learning_place
 
       t.integer :user_id
-      t.timestamps
     end
 
     add_index :user_fields, :user_id

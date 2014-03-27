@@ -32,7 +32,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string :fio
       t.string :role, limit: 20
-      t.string :phone
+      t.string :mobile_phone
+      t.string :home_phone
       t.timestamps
     end
 

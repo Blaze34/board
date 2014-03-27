@@ -1,0 +1,59 @@
+= javascript_include_tag 'registration', 'data-turbolinks-track' => true
+
+%h2 Sign up
+- resource.build_user_fields
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'container-fluid'}) do |f|
+  = model_error_messages! resource
+
+  .row-fluid
+    .span6
+      = f.label :email
+      = f.email_field :email, autofocus: true, class: 'input-block-level'
+    .span6
+      = f.label :fio
+      = f.text_field :fio, autofocus: true, class: 'input-block-level'
+
+  .row-fluid
+    .span6
+      = f.label :mobile_phone
+      = f.text_field :mobile_phone, autofocus: true, class: 'input-block-level'
+    .span6
+      = f.label :home_phone
+      = f.text_field :home_phone, autofocus: true, class: 'input-block-level'
+
+  .row-fluid
+    .span6
+      = f.label :password
+      = f.password_field :password, autocomplete: 'off', class: 'input-block-level'
+    .span6
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: 'off', class: 'input-block-level'
+
+  .row-fluid
+    .span6
+      = f.label :role
+      = f.select :role, %w(worker employer), {}, class: 'input-block-level'
+
+  .fields_for.new_user_hide
+    =f.fields_for :user_fields do |uf|
+
+      .row-fluid
+        .span6
+          = uf.label :salary
+          = uf.text_field :salary, class: 'input-block-level'
+        .span6
+          = uf.label :experience
+          = uf.text_field :experience, class: 'input-block-level'
+
+      .row-fluid
+        .span6
+          = uf.label :learning_place
+          = uf.text_field :learning_place, class: 'input-block-level'
+        .span6
+          = uf.label :employment
+          = uf.select :employment, [''] + UserFields.employment.options, {}, class: 'input-block-level'
+
+  = f.submit 'Sign up', class: 'btn-primary btn-large'
+
+= render 'devise/shared/links'
+
