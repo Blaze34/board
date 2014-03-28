@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327150301) do
+ActiveRecord::Schema.define(version: 20140328095303) do
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -68,8 +68,10 @@ ActiveRecord::Schema.define(version: 20140327150301) do
     t.string   "name"
     t.integer  "salary"
     t.string   "employment"
-    t.datetime "expire"
+    t.integer  "expire"
+    t.datetime "expire_at"
     t.integer  "user_id"
+    t.string   "cached_skill_list"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :user_fields
 
   def role?(name)
-    role == name
+    self.role.try(:to_sym) == name.to_sym
   end
 end

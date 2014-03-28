@@ -42,6 +42,7 @@ gem 'acts-as-taggable-on'
 gem 'cancancan'
 gem 'twitter-bootstrap-rails'
 gem 'haml-rails'
+gem 'bootstrap-datepicker-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

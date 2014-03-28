@@ -1,0 +1,30 @@
+= model_error_messages! @vacancy
+
+= form_for @vacancy, html: { class: 'form-horizontal' } do |f|
+  .row-fluid
+    .control-group.span6
+      = f.label :name, class: 'control-label'
+      .controls
+        = f.text_field :name, class: 'input-block-level'
+    .control-group.span6
+      = f.label :salary, class: 'control-label'
+      .controls
+        = f.text_field :salary, class: 'input-block-level'
+  .row-fluid
+    .control-group.span6
+      = f.label :employment, class: 'control-label'
+      .controls
+        = f.select :employment, [''] + Vacancy.employment.options, {}, class: 'input-block-level'
+    .control-group.span6
+      = f.label :expire_at, class: 'control-label'
+      .controls
+        = f.text_field :expire_at, autocomplete: 'off', class: 'input-block-level',
+            'data-behaviour' => 'datepicker'
+
+  .control-group
+    = f.label :skill_list, class: 'control-label'
+    .controls
+      = f.text_field :skill_list, class: 'input-block-level'
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t('.cancel', :default => t('helpers.links.cancel')), vacancies_path, class: 'btn'
