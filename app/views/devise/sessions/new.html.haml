@@ -1,0 +1,21 @@
+%h2.text-center Sign in
+
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal auth_form container-fluid'} ) do |f|
+  .control-group
+    = f.label :email, class: 'control-label'
+    .controls
+      = f.email_field :email, autofocus: true, class: 'input-block-level'
+
+  .control-group
+    = f.label :password, class: 'control-label'
+    .controls
+      = f.password_field :password, autocomplete: 'off', class: 'input-block-level'
+
+  - if devise_mapping.rememberable?
+    .control-group
+      .controls
+        .checkbox
+          %label Remember me #{f.check_box :remember_me}
+        %button.btn.btn-default Sign in
+
+  = render 'devise/shared/links'
