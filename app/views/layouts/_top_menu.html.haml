@@ -1,7 +1,7 @@
 = nav_bar brand: 'Board' do
   = menu_group do
     = menu_item 'Vacancies', vacancies_path
-    = menu_item 'Workers', '/'
+    = menu_item 'Workers', workers_path
   = menu_group pull: :right do
     - if user_signed_in?
       = menu_item 'Edit Profile', edit_user_registration_path

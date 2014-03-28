@@ -1,20 +1,15 @@
 class Vacancy < ActiveRecord::Base
-
   extend Enumerize
 
-  belongs_to :user
-
-  validates :name, presence: true
-  validates :expire_at, presence: true
-  validates :employment, presence: true
-  validates :skill_list, presence: true
-  validate :expire_cannot_be_in_the_past
+  validates :name, :expire_at, :employment, :skill_list, presence: true
+  validate :expire_cannot_be_in_the_past, unless: 'expire_at.blank?'
 
   enumerize :employment, in: [:full, :part, :remote]
 
   acts_as_taggable_on :skills
+  belongs_to :user
 
   def expire_cannot_be_in_the_past
-    errors.add(:expiration_date, 'can\'t be in the past') if expire_at < Date.today
+    errors.add(:expire_at, 'can\'t be in the past') if expire_at.to_date < Date.today
   end
 end

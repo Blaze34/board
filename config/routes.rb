@@ -1,5 +1,5 @@
 Board::Application.routes.draw do
-  get "worker/index"
+  get 'worker/index', as: :workers
   devise_for :users
 
   resources :vacancies

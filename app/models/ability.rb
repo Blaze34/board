@@ -29,8 +29,6 @@ class Ability
     # See the wiki for details:
     # https://github.com/bryanrite/cancancan/wiki/Defining-Abilities
 
-    #cannot :manage, :all
-
     user ||= User.new
     if user.role? :employer
       can [:new, :create], Vacancy

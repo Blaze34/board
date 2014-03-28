@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: Hello world
+
+  time:
+    formats:
+      date: '%d.%m.%Y'
+      time: '%H:%M'
+      datetime: '%d.%m.%Y %H:%M'

@@ -8,26 +8,20 @@ class VacanciesController < ApplicationController
     @vacancies = Vacancy.all
   end
 
-  def new
-  end
-
   def create
     @vacancy.user = current_user
     if @vacancy.save
       redirect_to vacancies_path
     else
-      render 'new'
+      render :new
     end
-  end
-
-  def edit
   end
 
   def update
     if @vacancy.update model_params
       redirect_to vacancies_path
     else
-      render 'new'
+      render :new
     end
   end
 

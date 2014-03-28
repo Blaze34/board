@@ -1,8 +1,7 @@
 class UserFields < ActiveRecord::Base
   extend Enumerize
 
-  validates :employment, presence: true
-  validates :skill_list, presence: true
+  validates :employment, :skill_list, presence: true
 
   belongs_to :user
 

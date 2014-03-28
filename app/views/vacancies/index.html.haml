@@ -19,9 +19,9 @@
         %td= link_to vacancy.name, vacancy_path(vacancy)
         %td= vacancy.salary
         %td= vacancy.employment
-        %td= vacancy.expire_at
+        %td= l vacancy.expire_at, format: :date
         %td= vacancy.cached_skill_list
-        %td=l vacancy.created_at
+        %td= l vacancy.created_at, format: :datetime
         %td
           - if can? :edit, vacancy
             = link_to t('.edit', :default => t('helpers.links.edit')), edit_vacancy_path(vacancy), :class => 'btn btn-mini'
