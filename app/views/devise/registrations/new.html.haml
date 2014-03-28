@@ -32,7 +32,7 @@
   .row-fluid
     .span6
       = f.label :role
-      = f.select :role, %w(worker employer), {}, class: 'input-block-level'
+      = f.select :role, User.role.options, {}, class: 'input-block-level'
 
   .fields_for.new_user_hide
     =f.fields_for :user_fields do |uf|
