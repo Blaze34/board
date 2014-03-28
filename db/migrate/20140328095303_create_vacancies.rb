@@ -4,8 +4,10 @@ class CreateVacancies < ActiveRecord::Migration
       t.string    :name
       t.integer   :salary
       t.string    :employment
-      t.datetime  :expire
+      t.integer   :expire
+      t.datetime  :expire_at
       t.integer   :user_id
+      t.string    :cached_skill_list
       t.timestamps
     end
   end
