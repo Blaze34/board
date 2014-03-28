@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  enumerize :role, in: [:employer, :worker], default: :worker
+  enumerize :role, in: [:employer, :worker]
 
   validates :fio, presence: true, format: { with: /\A[а-я]+\s[а-я]+\s[а-я]+\z/i,
       message: 'должен содержать ваше настоящие имя кириллицей'
@@ -18,4 +18,7 @@ class User < ActiveRecord::Base
   has_one :user_fields
   accepts_nested_attributes_for :user_fields
 
+  def role?(name)
+    role == name
+  end
 end
