@@ -1,4 +1,4 @@
-class Vacancies < ActiveRecord::Base
+class Vacancy < ActiveRecord::Base
 
   validates :name, presence: true
   validates :expire, presence: true
