@@ -5,7 +5,9 @@ class VacanciesController < ApplicationController
   authorize_resource except: [:index, :show]
 
   def index
-    @vacancies = Vacancy.all
+    @search = Vacancy.search(params[:q])
+
+    @vacancies = @search.result(distinct: true)
   end
 
   def create

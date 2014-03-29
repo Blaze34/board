@@ -6,12 +6,12 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:salary)
-      %th= model_class.human_attribute_name(:employment)
-      %th= model_class.human_attribute_name(:expire_at)
+      %th= sort_link(@search, :name, {})
+      %th= sort_link(@search, :salary, {})
+      %th= sort_link(@search, :employment, {})
+      %th= sort_link(@search, :expire_at, {})
       %th= model_class.human_attribute_name(:required_skill_list)
-      %th= model_class.human_attribute_name(:created_at)
+      %th= sort_link(@search, :created_at, {})
       %th=t '.actions', :default => t('helpers.actions')
   %tbody
     - @vacancies.each do |vacancy|
