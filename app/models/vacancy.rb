@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: vacancies
+#
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  salary            :integer
+#  employment        :string(255)
+#  expire            :integer
+#  expire_at         :datetime
+#  user_id           :integer
+#  cached_skill_list :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 class Vacancy < ActiveRecord::Base
   extend Enumerize
 

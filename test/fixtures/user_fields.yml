@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: user_fields
+#
+#  id                :integer          not null, primary key
+#  employment        :string(255)
+#  salary            :integer
+#  experience        :integer
+#  learning_place    :text
+#  user_id           :integer
+#  cached_skill_list :string(255)
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the
