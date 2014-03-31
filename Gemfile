@@ -34,8 +34,6 @@ end
 
 group :development do
   gem 'rspec'
-  #gem 'bullet'
-  gem 'rack-mini-profiler'
   gem 'rails-footnotes'
 end
 
