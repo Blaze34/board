@@ -34,7 +34,8 @@ end
 
 group :development do
   gem 'rspec'
-  gem 'rails-footnotes'
+  #gem 'rails-footnotes'
+  gem 'meta_request'
 end
 
 gem 'devise'
