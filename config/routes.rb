@@ -1,5 +1,6 @@
 Board::Application.routes.draw do
-  get 'worker/index', as: :workers
+  get 'workers' => 'workers#index', as: :workers
+  get 'workers/:id' => 'workers#show', as: :worker
   devise_for :users
 
   resources :vacancies

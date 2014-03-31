@@ -1,0 +1,30 @@
+.page-header
+  %h1=t '.title'
+
+%p
+  %strong Name:
+  = @worker.fio
+%p
+  %strong Contacts:
+  = [@worker.mobile_phone, @worker.home_phone].reject { |p| p.empty? } .join(', ')
+%p
+  %strong Employment:
+  = @worker.user_fields.employment
+%p
+  %strong Salary:
+  = @worker.user_fields.salary.presence || '-'
+%p
+  %strong Experience:
+  = @worker.user_fields.experience.presence || '-'
+%p
+  %strong Learning place:
+  = @worker.user_fields.learning_place.presence || '-'
+%p
+  %strong Skill list:
+  = @worker.user_fields.cached_skill_list
+%p
+  %strong Created at:
+  = l @worker.created_at, format: :date
+
+.form-actions
+  = link_to t('.back', default: t('helpers.links.back')), workers_path, class: 'btn'

@@ -1,0 +1,28 @@
+%h1=t '.title'
+
+= search_form_for @search, url: workers_path, class: 'form-search' do |f|
+  = f.text_field :fio_cont, placeholder: :fio_contains
+  = f.text_field :user_fields_salary_gteq, placeholder: :salary_more_that
+
+  %button.btn= t('buttons.search')
+
+= paginate @workers
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= sort_link(@search, :fio)
+      %th= sort_link(@search, :user_fields_salary)
+      %th= sort_link(@search, :user_fields_experience)
+      %th= sort_link(@search, :user_fields_employment)
+      %th= t('.skill_list')
+  %tbody
+    - @workers.each do |worker|
+      %tr
+        %td= link_to worker.fio, worker_path(worker)
+        %td= worker.user_fields.salary
+        %td= worker.user_fields.experience
+        %td= worker.user_fields.employment
+        %td= worker.user_fields.cached_skill_list
+
+= paginate @workers
