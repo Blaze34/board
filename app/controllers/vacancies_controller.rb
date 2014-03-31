@@ -6,7 +6,6 @@ class VacanciesController < ApplicationController
 
   def index
     @search = Vacancy.search(params[:q])
-
     @vacancies = @search.result.where('expire_at > ?', Date.today).page(params[:page])
   end
 
@@ -33,6 +32,7 @@ class VacanciesController < ApplicationController
   end
 
   private
+
   def model_params
     params.require(:vacancy).permit(:name, :salary, :employment, :expire_at, :skill_list)
   end
