@@ -6,7 +6,7 @@ class VacanciesController < ApplicationController
 
   def index
     @search = Vacancy.search(params[:q])
-    @vacancies = @search.result.where('expire_at > ?', Date.today).page(params[:page])
+    @vacancies = @search.result.open.page(params[:page])
   end
 
   def create
