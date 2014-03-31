@@ -1,8 +1,8 @@
 - model_class = Vacancy
 .page-header
   - if can? :new, Vacancy
-    = link_to t('.new', :default => t('helpers.links.new')), new_vacancy_path, class: 'btn btn-primary pull-right'
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+    = link_to t('.new', default: t('helpers.links.new')), new_vacancy_path, class: 'btn btn-primary pull-right'
+  %h1=t '.title', default: model_class.model_name.human.pluralize.titleize
 
 = search_form_for @search, class: 'form-search' do |f|
   = f.text_field :name_cont, placeholder: :name_contains
