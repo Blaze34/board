@@ -15,7 +15,8 @@
 //= require turbolinks
 //= require twitter/bootstrap
 //= require bootstrap
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
 //= require_self
 
 
@@ -24,7 +25,8 @@ $(function(){
         $(this).datepicker({
             format: "dd-mm-yyyy",
             weekStart: 1,
-            autoclose: true
+            autoclose: true,
+            language: 'ru'
         })
     })
 });
