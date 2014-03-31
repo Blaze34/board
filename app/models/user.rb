@@ -41,6 +41,8 @@ class User < ActiveRecord::Base
   has_one :user_fields
   accepts_nested_attributes_for :user_fields
 
+  scope :workers, -> { where role: :worker }
+
   def role?(name)
     self.role.try(:to_sym) == name
   end
