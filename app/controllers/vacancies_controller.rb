@@ -7,7 +7,7 @@ class VacanciesController < ApplicationController
   def index
     @search = Vacancy.search(params[:q])
 
-    @vacancies = @search.result(distinct: true)
+    @vacancies = @search.result.page(params[:page])
   end
 
   def create
