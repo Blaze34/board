@@ -1,8 +1,6 @@
 Board::Application.routes.draw do
-  get 'workers' => 'workers#index', as: :workers
-  get 'workers/:id' => 'workers#show', as: :worker
   devise_for :users
-
+  resources :workers, only: [:index, :show]
   resources :vacancies
 
   root 'vacancies#index'
