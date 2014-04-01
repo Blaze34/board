@@ -7,6 +7,8 @@ class VacanciesController < ApplicationController
   def index
     @search = Vacancy.search(params[:q])
     @vacancies = @search.result.open.page(params[:page])
+
+    @vacancies = @vacancies.tagged_with(params[:skills]) unless params[:skills].blank?
   end
 
   def create

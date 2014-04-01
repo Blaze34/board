@@ -1,12 +1,15 @@
+= javascript_include_tag 'skill_in_search', 'data-turbolinks-track' => true
+
 - model_class = Vacancy
 .page-header
   - if can? :new, Vacancy
     = link_to t('.new', default: t('helpers.links.new')), new_vacancy_path, class: 'btn btn-primary pull-right'
   %h1=t '.title', default: model_class.model_name.human.pluralize.titleize
 
-= search_form_for @search, class: 'form-search' do |f|
+= search_form_for @search, class: 'form-search search_with_skills' do |f|
   = f.text_field :name_cont, placeholder: :name_contains
   = f.text_field :salary_gteq, placeholder: :salary_more_that
+  = text_field_tag :skills, params[:skills], placeholder: :skills
 
   %button.btn= t('buttons.search')
 
@@ -29,7 +32,7 @@
         %td= vacancy.salary
         %td= vacancy.employment
         %td= l vacancy.expire_at, format: :date
-        %td= vacancy.cached_skill_list
+        %td= skills_list vacancy.cached_skill_list
         %td= l vacancy.created_at, format: :datetime
         %td
           - if can? :edit, vacancy
