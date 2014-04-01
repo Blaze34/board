@@ -30,9 +30,15 @@ class Ability
     # https://github.com/bryanrite/cancancan/wiki/Defining-Abilities
 
     user ||= User.new
-    if user.role? :employer
-      can [:new, :create], Vacancy
-      can [:edit, :update, :destroy], Vacancy, user_id: user.id
+
+    if user.id
+      can [:create], Comment
+      can [:destroy], Comment, user_id: user.id
+
+      if user.role? :employer
+        can [:new, :create], Vacancy
+        can [:edit, :update, :destroy], Vacancy, user_id: user.id
+      end
     end
   end
 end

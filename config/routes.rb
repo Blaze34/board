@@ -1,7 +1,10 @@
 Board::Application.routes.draw do
+  get "comments/create"
+  get "comments/destroy"
   devise_for :users
   resources :workers, only: [:index, :show]
   resources :vacancies
+  resources :comments, only: [:create, :destroy]
 
   root 'vacancies#index'
 

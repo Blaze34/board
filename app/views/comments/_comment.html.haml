@@ -1,0 +1,14 @@
+.comment{ id: "comment-#{comment.id}" }
+  - if can? :destroy, Comment
+    = link_to '×', comment_path(comment), method: :delete, remote: true,
+      confirm: 'Are you sure you want to remove this comment?', disable_with: '×',
+      class: 'close'
+  %h4
+    %small= l comment.updated_at, format: :datetime
+    = comment.user.fio
+  %p= comment.body
+
+  - if can? :create, Comment
+    = link_to 'answer', 'javascript:;', class: 'comment_for', data: { id: comment.id }
+
+  %hr
