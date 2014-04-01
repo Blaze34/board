@@ -12,11 +12,12 @@ $(function(){
         var currentTags = [];
 
         $.each($search_field.val().split(','), function(k,v){
-            currentTags.push($.trim(v));
+            v = $.trim(v);
+            if (v.length) currentTags.push($.trim(v));
         });
 
         if (currentTags.indexOf(tag) == -1){
-            currentTags.push(tag)
+            currentTags.push(tag);
             $search_field.val(currentTags.join(', '));
             $form_search.submit()
         }
