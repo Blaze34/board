@@ -1,10 +1,11 @@
 class WorkersController < ApplicationController
   def index
-    @search = User.search(params[:q])
-    @workers = @search.result.includes(:user_fields).workers.page(params[:page])
+    @search = UserFields.search(params[:q])
+    @workers = @search.result.includes(:user).workers.page(params[:page])
+    @workers = @workers.tagged_with(params[:skills]) unless params[:skills].blank?
   end
 
   def show
-    @worker = User.find(params[:id])
+    @worker = UserFields.find(params[:id])
   end
 end

@@ -3,28 +3,29 @@
 
 %p
   %strong Name:
-  = @worker.fio
+  = @worker.user.fio
 %p
   %strong Contacts:
-  = [@worker.mobile_phone, @worker.home_phone].reject { |p| p.empty? } .join(', ')
+  = [@worker.user.mobile_phone,
+      @worker.user.home_phone].reject { |p| p.empty? } .join(', ')
 %p
   %strong Employment:
-  = @worker.user_fields.employment
+  = @worker.employment
 %p
   %strong Salary:
-  = @worker.user_fields.salary.presence || '-'
+  = @worker.salary.presence || '-'
 %p
   %strong Experience:
-  = @worker.user_fields.experience.presence || '-'
+  = @worker.experience.presence || '-'
 %p
   %strong Learning place:
-  = @worker.user_fields.learning_place.presence || '-'
+  = @worker.learning_place.presence || '-'
 %p
   %strong Skill list:
-  = @worker.user_fields.cached_skill_list
+  = @worker.cached_skill_list
 %p
   %strong Created at:
-  = l @worker.created_at, format: :date
+  = l @worker.user.created_at, format: :date
 
 .form-actions
   = link_to t('.back', default: t('helpers.links.back')), workers_path, class: 'btn'
