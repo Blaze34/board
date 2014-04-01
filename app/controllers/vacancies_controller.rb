@@ -11,6 +11,11 @@ class VacanciesController < ApplicationController
     @vacancies = @vacancies.tagged_with(params[:skills]) unless params[:skills].blank?
   end
 
+  def show
+    @comments = @vacancy.comment_threads.includes(:user).order('created_at desc')
+    @new_comment = Comment.build_from(@vacancy)
+  end
+
   def create
     @vacancy.user = current_user
     if @vacancy.save

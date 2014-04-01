@@ -23,6 +23,8 @@ class Vacancy < ActiveRecord::Base
   enumerize :employment, in: [:full, :part, :remote]
 
   acts_as_taggable_on :skills
+  acts_as_commentable
+
   belongs_to :user
 
   scope :open, -> { where 'expire_at > ?', Date.today }
