@@ -8,6 +8,15 @@
     = comment.user.fio
   %p= comment.body
 
+  -#= comment.children.size
+  %p= comment.level
+  %p= comment.leaf?
+
+  -#- if comment.children.size > 0
+  - unless comment.leaf?
+    %blockquote
+      = render partial: 'comments/comment', collection: comment.children, as: :comment
+
   - if can? :create, Comment
     = link_to 'answer', 'javascript:;', class: 'comment_for', data: { id: comment.id }
 

@@ -12,7 +12,7 @@ class VacanciesController < ApplicationController
   end
 
   def show
-    @comments = @vacancy.comment_threads.includes(:user).order('created_at desc')
+    @comments = @vacancy.root_comments.includes(:user).order('created_at asc')
     @new_comment = Comment.build_from(@vacancy)
   end
 
