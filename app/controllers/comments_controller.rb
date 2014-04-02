@@ -5,6 +5,13 @@ class CommentsController < ApplicationController
 
   def create
     if @comment.save
+
+      unless params[:comment][:parent_id].blank?
+        parent = @obj.comment_threads.find_by(id: params[:comment][:parent_id])
+
+        @comment.move_to_child_of parent if parent
+      end
+
       render partial: 'comments/comment', locals: { comment: @comment },
              layout: false, status: :created
     else
@@ -26,9 +33,5 @@ class CommentsController < ApplicationController
     data = params.require(:comment)
     @obj = Comment.find_commentable(data[:commentable_type], data[:commentable_id])
     @comment = Comment.build_from(@obj, current_user.id, data[:body])
-
-    unless data[:parent_id].blank?
-    #  check is parent available
-    end
   end
 end

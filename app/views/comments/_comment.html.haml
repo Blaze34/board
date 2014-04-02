@@ -1,20 +1,19 @@
-.comment{ id: "comment-#{comment.id}" }
+.comment
   - if can? :destroy, Comment
     = link_to '×', comment_path(comment), method: :delete, remote: true,
       confirm: 'Are you sure you want to remove this comment?', disable_with: '×',
       class: 'close'
-  %h4
-    %small= l comment.updated_at, format: :datetime
-    = comment.user.fio
-  %p= comment.body
+  %small= l comment.updated_at, format: :datetime
+  %strong= comment.user.fio
+  %div= comment.body
 
   -#= comment.children.size
-  %p= comment.level
-  %p= comment.leaf?
+  -#%p= comment.level
+  -#%p= comment.leaf?
 
   -#- if comment.children.size > 0
-  - unless comment.leaf?
-    %blockquote
+  %blockquote
+    - unless comment.leaf?
       = render partial: 'comments/comment', collection: comment.children, as: :comment
 
   - if can? :create, Comment
