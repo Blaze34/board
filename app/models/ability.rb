@@ -32,7 +32,7 @@ class Ability
     user ||= User.new
 
     if user.id
-      can [:create], Comment
+      can [:create, :vote, :unvote], Comment
       can [:destroy], Comment, user_id: user.id
 
       if user.role? :employer

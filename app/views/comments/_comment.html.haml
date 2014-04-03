@@ -3,8 +3,15 @@
     = link_to '×', comment_path(comment), method: :delete, remote: true,
       confirm: 'Are you sure you want to remove this comment?', disable_with: '×',
       class: 'close'
-  %small= l comment.updated_at, format: :datetime
+  %span.muted= l comment.updated_at, format: :datetime
   %strong= comment.user.fio
+
+  .input-prepend.input-append.voting
+    = link_to glyph(:thumbs_up), vote_comment_path(comment), class: 'btn disabled', remote: true
+    %input.span1.text-center.text-success{ disabled: true, value: 0, type: :text }
+    %input.span1.text-center.text-error{ disabled: true, value: 0, type: :text }
+    = link_to glyph(:thumbs_down), vote_comment_path(comment, :dislike), class: 'btn', remote: true
+
   %div= comment.body
 
   %blockquote

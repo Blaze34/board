@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
 
   scope :workers, -> { where role: :worker }
 
+  acts_as_voter
+
   def role?(name)
     self.role.try(:to_sym) == name
   end

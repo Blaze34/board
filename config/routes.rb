@@ -1,10 +1,11 @@
 Board::Application.routes.draw do
-  get "comments/create"
-  get "comments/destroy"
   devise_for :users
   resources :workers, only: [:index, :show]
   resources :vacancies
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy] do
+    get 'vote(/:type)', action: :vote, on: :member, as: :vote
+    get :unvote, on: :member
+  end
 
   root 'vacancies#index'
 
