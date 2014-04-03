@@ -7,15 +7,10 @@
   %strong= comment.user.fio
   %div= comment.body
 
-  -#= comment.children.size
-  -#%p= comment.level
-  -#%p= comment.leaf?
-
-  -#- if comment.children.size > 0
   %blockquote
     - unless comment.leaf?
-      = render partial: 'comments/comment', collection: comment.children, as: :comment
-
+      = render partial: 'comments/comment', collection: tree.children(comment.id),
+                as: :comment, locals: { tree: tree }
   - if can? :create, Comment
     = link_to 'answer', 'javascript:;', class: 'comment_for', data: { id: comment.id }
 

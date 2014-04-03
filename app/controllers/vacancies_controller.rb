@@ -12,7 +12,7 @@ class VacanciesController < ApplicationController
   end
 
   def show
-    @comments = @vacancy.root_comments.includes(:user).order('created_at asc')
+    @tree = AwesomeNestedTree.new @vacancy.comment_threads.includes(:user)
     @new_comment = Comment.build_from(@vacancy)
   end
 
