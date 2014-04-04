@@ -33,7 +33,7 @@ jQuery ->
     $this.hide().before($form)
     $form.find('input[name*=parent_id]').val($this.data('id') || '')
 
-  .on 'ajax:beforeSend', '.voting', ->
+  .on 'ajax:before', '.voting', ->
     $this = $(this)
     return false if $this.data('sending')
     $this.data('sending', true)
