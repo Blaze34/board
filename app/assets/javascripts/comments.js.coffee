@@ -11,11 +11,10 @@ jQuery ->
     $(this).find('textarea').addClass('uneditable-input').attr('disabled', 'disabled')
   .on 'ajax:success', (e, response, status, xhr) ->
     $this = $(this)
-    $this.find('textarea')
-    .removeClass('uneditable-input')
-    .removeAttr('disabled', 'disabled')
-    .val('');
-    $(response).hide().appendTo($this.prev()).show('slow')
+    $this.find('textarea').removeClass('uneditable-input').removeAttr('disabled', 'disabled').val('');
+
+    if xhr.getResponseHeader('Content-Type').indexOf('javascript') == -1
+      $(response).hide().appendTo($this.prev()).show('slow')
 
   $list
   .on 'ajax:beforeSend', '.close', ->
@@ -51,4 +50,3 @@ jQuery ->
 
   .on 'ajax:complete', '.voting', ->
     $(this).data('sending', false)
-
