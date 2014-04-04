@@ -37,7 +37,7 @@ class Ability
 
       if user.role? :employer
         can [:new, :create], Vacancy
-        can [:edit, :update, :destroy], Vacancy, user_id: user.id
+        can [:edit, :update, :destroy, :search_workers], Vacancy, user_id: user.id
       end
     end
   end

@@ -40,8 +40,16 @@
   - if can? :edit, @vacancy
     = link_to t('.edit'), edit_vacancy_path(@vacancy), class: 'btn'
   - if can? :destroy, @vacancy
-    = link_to t('.destroy'), vacancy_path(@vacancy), method: 'delete',
-    data: { confirm: t('.confirm', default: 'Are You sure?') }, class: 'btn btn-danger'
+    = link_to t('.destroy'), vacancy_path(@vacancy), method: 'delete', data: { confirm: t('.confirm', default: 'Are You sure?') }, class: 'btn btn-danger'
+
+- if can? :search_workers, @vacancy
+  .row-fluid
+    .span6
+      %h4 With all required skills
+      = render partial: 'workers/short_list', locals: { workers: @all_matches }
+    .span6
+      %h4 With any required skills
+      = render partial: 'workers/short_list', locals: { workers: @any_matches }
 
 
 = render partial: 'comments/list', locals: { new_comment: @new_comment, tree: @tree }

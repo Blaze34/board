@@ -1,0 +1,15 @@
+- if workers.count > 0
+  %table.table.table-striped
+    %thead
+      %tr
+        %th FIO
+        %th Salary
+        %th Skill_list
+    %tbody
+      - workers.each do |worker|
+        %tr
+          %td= link_to worker.user.fio, worker_path(worker)
+          %td= worker.salary
+          %td= skills_list worker.cached_skill_list
+- else
+  %div.well.text-center Not found

@@ -14,6 +14,11 @@ class VacanciesController < ApplicationController
   def show
     @tree = AwesomeNestedTree.new @vacancy.comment_threads.includes(:user)
     @new_comment = Comment.build_from(@vacancy)
+
+    if can? :search_workers, @vacancy
+      @any_matches = find_workers(@vacancy.cached_skill_list, true)
+      @all_matches = find_workers(@vacancy.cached_skill_list)
+    end
   end
 
   def create
@@ -46,5 +51,9 @@ class VacanciesController < ApplicationController
 
   def build_vacancy
     @vacancy = Vacancy.new(model_params)
+  end
+
+  def find_workers(skills, any = false)
+    UserFields.includes(:user).tagged_with(skills, any: any).order('salary')
   end
 end
