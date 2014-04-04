@@ -17,7 +17,7 @@ jQuery ->
     .val('');
     $(response).hide().appendTo($this.prev()).show('slow')
 
-  $(document)
+  $list
   .on 'ajax:beforeSend', '.close', ->
     $(this).closest('.comment').fadeTo('fast', 0.5)
   .on 'ajax:success', '.close', ->
@@ -25,13 +25,30 @@ jQuery ->
   .on 'ajax:error', '.close', ->
     $(this).closest('.comment').fadeTo('fast', 1)
 
-  $list.on 'click', '.comment_for', (e) ->
+  .on 'click', '.comment_for', (e) ->
     e.preventDefault()
     $this = $(this)
-
-    false unless $form.length
-
+    return false unless $form.length
     $form.next(':hidden').show()
     $this.hide().before($form)
-
     $form.find('input[name*=parent_id]').val($this.data('id') || '')
+
+  .on 'ajax:beforeSend', '.voting', ->
+    $this = $(this)
+    return false if $this.data('sending')
+    $this.data('sending', true)
+
+  .on 'ajax:success', '.voting', (e, response) ->
+    $this = $(this)
+    $this.find('.count-likes').val(response.like)
+    $this.find('.count-dislikes').val(response.dislike)
+    $this.find('.btn').removeClass('disabled').data('method', false)
+
+    if response.vote
+      $this.find('.btn').first().addClass('disabled').data('method', 'delete')
+    else if response.vote == false
+      $this.find('.btn').last().addClass('disabled').data('method', 'delete')
+
+  .on 'ajax:complete', '.voting', ->
+    $(this).data('sending', false)
+

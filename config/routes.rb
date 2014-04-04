@@ -4,7 +4,7 @@ Board::Application.routes.draw do
   resources :vacancies
   resources :comments, only: [:create, :destroy] do
     get 'vote(/:type)', action: :vote, on: :member, as: :vote
-    get :unvote, on: :member
+    delete 'vote(/:type)', action: :unvote, on: :member
   end
 
   root 'vacancies#index'

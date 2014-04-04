@@ -6,11 +6,14 @@
   %span.muted= l comment.updated_at, format: :datetime
   %strong= comment.user.fio
 
+  - vote = current_user ? current_user.voted_as_when_voted_for(comment) : nil
   .input-prepend.input-append.voting
-    = link_to glyph(:thumbs_up), vote_comment_path(comment), class: 'btn disabled', remote: true
-    %input.span1.text-center.text-success{ disabled: true, value: 0, type: :text }
-    %input.span1.text-center.text-error{ disabled: true, value: 0, type: :text }
-    = link_to glyph(:thumbs_down), vote_comment_path(comment, :dislike), class: 'btn', remote: true
+    = vote_link glyph(:thumbs_up), vote_comment_path(comment), vote
+    %input.span1.text-center.text-success.count-likes{ disabled: true,
+      value: comment.count_votes_up, type: :text }
+    %input.span1.text-center.text-error.count-dislikes{ disabled: true,
+      value: comment.count_votes_down, type: :text }
+    = vote_link glyph(:thumbs_down), vote_comment_path(comment, :dislike), vote == false
 
   %div= comment.body
 
