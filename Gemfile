@@ -33,9 +33,13 @@ group :doc do
 end
 
 group :development do
-  gem 'rspec'
   #gem 'rails-footnotes'
   gem 'meta_request'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl'
 end
 
 gem 'devise'
